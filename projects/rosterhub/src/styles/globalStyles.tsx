@@ -1,13 +1,13 @@
 import "@/assets/fonts/font.css";
-import {CSSProperties, ReactNode} from "react";
+import { CSSProperties, ReactNode } from "react";
 import "./index.css";
-import {COLOR, FONT_WEIGHT} from "./tokens";
+import { COLOR, FONT_WEIGHT } from "./tokens";
 
 type GlobalStylesProps = {
 	children: ReactNode;
 };
 
-const GlobalStyles = ({children}: GlobalStylesProps) => {
+const GlobalStyles = ({ children }: GlobalStylesProps) => {
 	return <div style={$GlobalProperties}>{children}</div>;
 };
 
@@ -19,9 +19,8 @@ const $GlobalProperties: CSSProperties = {
 	height: "fit-content",
 	minHeight: "100vh",
 
-	fontFamily: "KingSejongInstitute",
 	fontWeight: FONT_WEIGHT.regular,
 
 	color: COLOR.grayScale[0],
-	backgroundColor: COLOR.brand.beige
+	backgroundColor: COLOR.grayScale[100]
 };

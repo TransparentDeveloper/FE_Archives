@@ -1,8 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import {RouterProvider, createBrowserRouter} from "react-router-dom";
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import App from "./App.tsx";
-import GlobalStyles from "./styles/global-styles.tsx";
+import GlobalStyles from "./styles/globalStyles.tsx";
 
 const router = createBrowserRouter([
 	{
@@ -14,7 +14,7 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById("root")!).render(
 	<React.StrictMode>
 		<GlobalStyles>
-			<RouterProvider {...{router}} />
+			<RouterProvider {...{ router }} />
 		</GlobalStyles>
 	</React.StrictMode>
 );

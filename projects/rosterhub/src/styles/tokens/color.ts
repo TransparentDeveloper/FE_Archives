@@ -3,9 +3,8 @@ export const COLOR = {
 		marieRouge: "#edacb1",
 		orange: "#ff7f00",
 		tangerine: "#f89b00",
-		apricot: "#fbceb1",
-		ocher: "#c68a12",
-		beige: "#f6e3cc"
+		apricot: "#ffbe94",
+		ocher: "#f6ba43"
 	},
 	grayScale: {
 		0: "#000000",
