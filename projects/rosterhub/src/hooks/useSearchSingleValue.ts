@@ -6,7 +6,7 @@ export const useSearchSingleValue = (paramKey: string) => {
 
 	const getValue = (): string => {
 		const value = params.get(paramKey);
-		if (!value) return "";
+		if (!value) return "-1";
 		return value;
 	};
 	const updateValue = (value: string) => {

@@ -1,4 +1,4 @@
-import { ULR_PARMA_SORT_METHOD } from "@/constants";
+import { URL_PARAM_PERSONNEL } from "@/constants";
 import { useSearchCryptoArray } from "@/hooks/useSearchCryptoArray";
 import { $AlignCenter, $SizeFull, BORDER_RADIUS, COLOR } from "@/styles";
 import { PersonnelInfoType } from "@/types";
@@ -9,7 +9,7 @@ import { Divider } from "../common/divider";
 
 export const RegisterPanel = () => {
 	const { addElementOne: addPersonnel } =
-		useSearchCryptoArray<PersonnelInfoType>(ULR_PARMA_SORT_METHOD);
+		useSearchCryptoArray<PersonnelInfoType>(URL_PARAM_PERSONNEL);
 	const onSubmit = (e: ChangeEvent<HTMLFormElement>) => {
 		e.preventDefault();
 
@@ -18,7 +18,7 @@ export const RegisterPanel = () => {
 		const birthDay = (e.target.elements[2] as HTMLInputElement).value;
 
 		addPersonnel({
-			id: getTimeStamp(),
+			id: getTimeStamp() % 9397,
 			name,
 			birthDay,
 			phoneNumber,

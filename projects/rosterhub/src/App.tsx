@@ -8,15 +8,21 @@ import {
 } from "./components";
 import { PersonnelCard } from "./components/common";
 import { Header } from "./components/common/header";
-import { ULR_PARMA_SORT_METHOD } from "./constants";
+import { URL_PARAM_LOAD_PER_PAGE, URL_PARAM_PERSONNEL } from "./constants";
+import { useSearchSingleValue } from "./hooks";
 import { useSearchCryptoArray } from "./hooks/useSearchCryptoArray";
 import { COLOR } from "./styles";
 import { PersonnelInfoType } from "./types";
 
-function App() {
-	const { getArray: getPersonnel } = useSearchCryptoArray<PersonnelInfoType>(
-		ULR_PARMA_SORT_METHOD
+const App = () => {
+	const { getArray: getPersonnel } =
+		useSearchCryptoArray<PersonnelInfoType>(URL_PARAM_PERSONNEL);
+	const { getValue: getLoadPerPage } = useSearchSingleValue(
+		URL_PARAM_LOAD_PER_PAGE
 	);
+
+	console.log(getPersonnel().length);
+
 	return (
 		<CenterBox
 			height="100%"
@@ -41,11 +47,11 @@ function App() {
 							themeColor={COLOR.brand.marieRouge}
 						/>
 					))}
-					<Pagination totalPage={10} />
+					<Pagination totalPage={Math.floor(getPersonnel().length / 21) + 1} />
 				</ColumnBox>
 			</MaxSizeBox>
 		</CenterBox>
 	);
-}
+};
 
 export default App;
