@@ -1,3 +1,4 @@
+import { CenterBox, KeyValueTexts } from "@/components";
 import {
 	$AlignCenter,
 	$SizeFull,
@@ -5,9 +6,7 @@ import {
 	COLOR,
 	FONT_SIZE
 } from "@/styles";
-import { CSSProperties } from "react";
-import { KeyValueTexts } from ".";
-import { CenterBox } from "..";
+import type { CSSProperties } from "react";
 
 type PersonnelCardProps = {
 	id: number;
@@ -74,7 +73,7 @@ const $IdHazyText: CSSProperties = {
 	position: "absolute",
 	fontSize: "8rem",
 	color: "rgba(230, 230, 230, 0.5)",
-	top: "0%",
+	top: "-18%",
 	left: "-5%",
 	textAlign: "center"
 };

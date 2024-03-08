@@ -21,7 +21,7 @@ const App = () => {
 		URL_PARAM_LOAD_PER_PAGE
 	);
 
-	console.log(getPersonnel().length);
+	console.log(" 생성된 인원 수", getPersonnel().length);
 
 	return (
 		<CenterBox
@@ -47,7 +47,9 @@ const App = () => {
 							themeColor={COLOR.brand.marieRouge}
 						/>
 					))}
-					<Pagination totalPage={Math.floor(getPersonnel().length / 21) + 1} />
+					<Pagination
+						totalPage={Math.floor((getPersonnel().length - 1) / 20) + 1}
+					/>
 				</ColumnBox>
 			</MaxSizeBox>
 		</CenterBox>

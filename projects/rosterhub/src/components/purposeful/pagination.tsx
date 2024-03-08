@@ -55,7 +55,9 @@ export const Pagination = ({ totalPage }: PaginationProps) => {
 			{Array.from({
 				length: Math.min(totalPage, PRINTED_PAGES_NUMBER_AT_ONCE)
 			}).map((_, idx) => {
-				const pageNumberString = (idx + addendPagination + 1).toString();
+				const pageNumber = idx + addendPagination + 1;
+				const pageNumberString = pageNumber.toString();
+				if (totalPage < pageNumber) return <></>;
 				return (
 					<h2
 						key={idx}
