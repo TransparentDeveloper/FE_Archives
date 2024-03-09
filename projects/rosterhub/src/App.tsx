@@ -1,58 +1,43 @@
-import {
-	CenterBox,
-	ColumnBox,
-	MaxSizeBox,
-	Pagination,
-	RegisterPanel,
-	Spacer
-} from "./components";
-import { PersonnelCard } from "./components/common";
-import { Header } from "./components/common/header";
-import { URL_PARAM_LOAD_PER_PAGE, URL_PARAM_PERSONNEL } from "./constants";
-import { useSearchSingleValue } from "./hooks";
-import { useSearchCryptoArray } from "./hooks/useSearchCryptoArray";
-import { COLOR } from "./styles";
-import { PersonnelInfoType } from "./types";
+import { ColumnBox, Pagination, PersonnelCard, Spacer } from "@/components";
+import { Header } from "@/components/common/header";
+import { URL_PARAM_PERSONNEL } from "@/constants";
+import { useSearchCryptoArray } from "@/hooks";
+import { COLOR } from "@/styles";
+import { PersonnelInfoType } from "@/types";
+import { FilterSection, MainStructure } from "./units";
 
 const App = () => {
 	const { getArray: getPersonnel } =
 		useSearchCryptoArray<PersonnelInfoType>(URL_PARAM_PERSONNEL);
-	const { getValue: getLoadPerPage } = useSearchSingleValue(
-		URL_PARAM_LOAD_PER_PAGE
-	);
-
-	console.log(" 생성된 인원 수", getPersonnel().length);
 
 	return (
-		<CenterBox
-			height="100%"
-			direction="both"
-		>
-			<MaxSizeBox maxWidth="1080px">
-				<Header>
-					<RegisterPanel />
-				</Header>
-				<Spacer
-					width="100%"
-					height="10rem"
-				/>
-				<ColumnBox gap="5rem">
-					{getPersonnel().map((user) => (
-						<PersonnelCard
-							key={user.id}
-							id={user.id}
-							name={user.name}
-							phoneNumberText={user.phoneNumber}
-							birthDayText={user.birthDay}
-							themeColor={COLOR.brand.marieRouge}
-						/>
-					))}
-					<Pagination
-						totalPage={Math.floor((getPersonnel().length - 1) / 20) + 1}
+		<MainStructure>
+			<Header />
+			<Spacer
+				width="100%"
+				height="2rem"
+			/>
+			<FilterSection />
+			<Spacer
+				width="100%"
+				height="2rem"
+			/>
+			<ColumnBox gap="3rem">
+				{getPersonnel().map((user) => (
+					<PersonnelCard
+						key={user.id}
+						id={user.id}
+						name={user.name}
+						phoneNumberText={user.phoneNumber}
+						birthDayText={user.birthDay}
+						themeColor={COLOR.brand.marieRouge}
 					/>
-				</ColumnBox>
-			</MaxSizeBox>
-		</CenterBox>
+				))}
+				<Pagination
+					totalPage={Math.floor((getPersonnel().length - 1) / 20) + 1}
+				/>
+			</ColumnBox>
+		</MainStructure>
 	);
 };
 

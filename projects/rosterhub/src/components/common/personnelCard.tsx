@@ -54,7 +54,7 @@ export const PersonnelCard = ({
 
 const $Container: CSSProperties = {
 	width: "100%",
-	height: "18rem",
+	height: "15rem",
 	borderRadius: BORDER_RADIUS.big,
 	border: `0.3rem solid ${COLOR.grayScale[91]}`,
 	backgroundColor: COLOR.grayScale[100],

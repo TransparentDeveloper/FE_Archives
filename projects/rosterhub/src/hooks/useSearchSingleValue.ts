@@ -4,9 +4,13 @@ import { useSearchParams } from "react-router-dom";
 export const useSearchSingleValue = (paramKey: string) => {
 	const [params, setParams] = useSearchParams();
 
-	const getValue = (): string => {
+	/**
+	 * @param notFound : 값이 없을 경우 반환값
+	 * @returns {string}
+	 */
+	const getValue = (notFound: string): string => {
 		const value = params.get(paramKey);
-		if (!value) return "-1";
+		if (!value) return notFound;
 		return value;
 	};
 	const updateValue = (value: string) => {

@@ -1,6 +1,6 @@
 import { BORDER_RADIUS, COLOR } from "@/styles/tokens";
 import { $FlexCenter } from "@/styles/utilProperties";
-import type { ButtonHTMLAttributes } from "react";
+import type { ButtonHTMLAttributes, CSSProperties } from "react";
 
 type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
 	backgroundColor?: string;
@@ -20,7 +20,7 @@ export const Button = ({
 		</button>
 	);
 };
-const $Button = {
+const $Button: CSSProperties = {
 	...$FlexCenter,
 	width: "fit-content",
 	minWidth: "4rem",

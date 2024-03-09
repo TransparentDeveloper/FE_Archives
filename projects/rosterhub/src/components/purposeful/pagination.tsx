@@ -12,8 +12,7 @@ export const Pagination = ({ totalPage }: PaginationProps) => {
 		useSearchSingleValue(URL_PARAM_PAGE);
 
 	if (totalPage == 0) return;
-	let curPageString = getCurPage();
-	if (curPageString === "-1") curPageString = "1";
+	let curPageString = getCurPage("1");
 	const curPageNumber = parseInt(curPageString);
 	const addendPagination =
 		Math.floor((curPageNumber - 1) / PRINTED_PAGES_NUMBER_AT_ONCE) *
@@ -23,14 +22,12 @@ export const Pagination = ({ totalPage }: PaginationProps) => {
 		updateCurPage("1");
 	};
 	const onClickBefore = () => {
-		const curPage = parseInt(getCurPage());
-		if (curPage == 1) return;
-		updateCurPage((curPage - 1).toString());
+		if (curPageNumber == 1) return;
+		updateCurPage((curPageNumber - 1).toString());
 	};
 	const onClickAfter = () => {
-		const curPage = parseInt(getCurPage());
-		if (curPage == totalPage) return;
-		updateCurPage((curPage + 1).toString());
+		if (curPageNumber == totalPage) return;
+		updateCurPage((curPageNumber + 1).toString());
 	};
 	const onClickLast = () => {
 		updateCurPage(totalPage.toString());

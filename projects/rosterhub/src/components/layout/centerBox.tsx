@@ -25,9 +25,9 @@ export const CenterBox = ({
 				width,
 				height,
 				backgroundColor,
-				...(direction === "horizontal" && $HorizontalCenterBox),
-				...(direction === "vertical" && $VerticalCenterBox),
-				...(direction === "both" && $BiDirectionalCenterBox)
+				...(direction === "horizontal" && $JustifyCenter),
+				...(direction === "vertical" && $AlignCenter),
+				...(direction === "both" && $FlexCenter)
 			}}
 			{...rest}
 		>
@@ -38,13 +38,4 @@ export const CenterBox = ({
 
 const $PositionRelative: CSSProperties = {
 	position: "relative"
-};
-const $HorizontalCenterBox = {
-	...$JustifyCenter
-};
-const $VerticalCenterBox = {
-	...$AlignCenter
-};
-const $BiDirectionalCenterBox = {
-	...$FlexCenter
 };

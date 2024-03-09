@@ -2,3 +2,4 @@
 export * from "./centerBox";
 export * from "./columnBox";
 export * from "./maxSizeBox";
+export * from "./symmetricalPaddedBox";
