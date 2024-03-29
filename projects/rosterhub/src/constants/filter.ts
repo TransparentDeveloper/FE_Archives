@@ -13,7 +13,7 @@ export const Filters: Array<FilterType> = [
 				value: "createdAt"
 			},
 			{
-				label: "생성시간 순",
+				label: "생년월일 순",
 				value: "birthday"
 			}
 		]

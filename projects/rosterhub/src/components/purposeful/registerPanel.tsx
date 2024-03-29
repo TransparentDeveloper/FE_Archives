@@ -29,7 +29,7 @@ export const RegisterPanel = () => {
 			return;
 		}
 		addPersonnel({
-			id: getTimeStamp() % 9397,
+			id: getTimeStamp() % 9397, // 소수
 			name,
 			birthDay,
 			phoneNumber,
