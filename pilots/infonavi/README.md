@@ -1,4 +1,4 @@
-_(\*해당 저장소 는 원본 저장소 를 복제한 것입니다. - [🔗 원본 저장소 바로가기](https://github.com/secondflow02/InfoNavi))_
+_(\*해당 저장소 는 이미 구현이 완료된 원본 저장소 를 복제한 것입니다. - [🔗 원본 저장소 바로가기](https://github.com/secondflow02/InfoNavi))_
 
 # 🦋 INFONAVI
 
@@ -15,7 +15,7 @@ _👆 Logo 클릭 시, 배포된 주소로 이동됩니다._
 <br/>
 <br/>
 
-## 🖥️ 구현 화면
+## 🖥️ Display
 
 <div align="center">
 
@@ -90,10 +90,6 @@ _👆 Logo 클릭 시, 배포된 주소로 이동됩니다._
 <br/>
 
 ## 👨‍🦲 프로젝트 인원
-
-| <img width="200" alt="TransparentDeveloper_Avatar" src="https://avatars.githubusercontent.com/u/50646145?v=4"> |
-| :------------------------------------------------------------------------------------------------------------: |
-|                    이윤신 [@TransparentDeveloper](https://github.com/TransparentDeveloper)                     |
 
 <br/>
 <br/>
