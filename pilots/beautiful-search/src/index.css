@@ -1,0 +1,46 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+	* {
+		margin: 0;
+		padding: 0;
+		box-sizing: border-box;
+
+		@apply font-king;
+		@apply text-xl;
+		@apply font-regular;
+	}
+	html {
+		font-size: 62.5%;
+		@apply w-full;
+		@apply h-full;
+		@apply bg-red-200;
+		@apply overflow-hidden;
+	}
+	h1 {
+		@apply font-king;
+		@apply text-9xl;
+		@apply font-bold;
+	}
+	h2 {
+		@apply text-7xl;
+	}
+	h3 {
+		@apply text-6xl;
+	}
+	h4 {
+		@apply text-3xl;
+	}
+	button {
+		border: none;
+	}
+	input {
+		outline: none;
+	}
+	ul,
+	li {
+		list-style: none;
+	}
+}

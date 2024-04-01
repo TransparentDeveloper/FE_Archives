@@ -1,0 +1,12 @@
+@font-face {
+	font-family: 'KingSejongInstitute';
+	font-weight: 'regular';
+	font-style: normal;
+	src: url('./KingSejongInstitute-Regular.otf') format('opentype');
+}
+@font-face {
+	font-family: 'KingSejongInstitute';
+	font-weight: 'bold';
+	font-style: normal;
+	src: url('./KingSejongInstitute-Bold.otf') format('opentype');
+}
