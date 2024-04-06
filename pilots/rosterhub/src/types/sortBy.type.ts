@@ -1,1 +1,1 @@
-export type SortByType = "name" | "birthday" | "createdAt";
+export type SortByType = "name" | "birthday" | "id";

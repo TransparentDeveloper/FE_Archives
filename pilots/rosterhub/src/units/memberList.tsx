@@ -6,7 +6,11 @@ import {
 } from "@/constants";
 import { useSearchCryptoArray, useSearchSingleValue } from "@/hooks";
 import type { MemberType, SortByType, SortMethodType } from "@/types";
-import { pickBrandBySeed, sortMemberArrayByProperty } from "@/utils";
+import {
+	pickBrandBySeed,
+	sortMemberArrayByNumberProperty,
+	sortMemberArrayByStringProperty
+} from "@/utils";
 
 export const MemberList = () => {
 	const { getArray: getMemberArray } =
@@ -19,11 +23,18 @@ export const MemberList = () => {
 	const memberArray = getMemberArray();
 	const sortBy = getSortBy("name");
 	const sortMethod = getSortMethod("ascend");
-	const sortedMemberArray = sortMemberArrayByProperty(
-		memberArray,
-		sortBy as SortByType,
-		sortMethod as SortMethodType
-	);
+	const sortedMemberArray =
+		sortBy === "id"
+			? sortMemberArrayByNumberProperty(
+					memberArray,
+					sortBy as SortByType,
+					sortMethod as SortMethodType
+				)
+			: sortMemberArrayByStringProperty(
+					memberArray,
+					sortBy as SortByType,
+					sortMethod as SortMethodType
+				);
 
 	return (
 		<ColumnBox gap="3rem">

@@ -30,7 +30,7 @@ export const $FlexStart: React.CSSProperties = {
 	...$AlignStart,
 	...$JustifyStart
 };
-export const $FlexEnd: React.CSSProperties = {...$AlignEnd, ...$JustifyEnd};
+export const $FlexEnd: React.CSSProperties = { ...$AlignEnd, ...$JustifyEnd };
 export const $DirectionColumn: React.CSSProperties = {
 	display: "flex",
 	flexDirection: "column"

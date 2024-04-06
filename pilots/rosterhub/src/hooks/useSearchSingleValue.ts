@@ -13,8 +13,11 @@ export const useSearchSingleValue = (paramKey: string) => {
 		return value;
 	};
 	const updateValue = (value: string) => {
+		const prev = params.get(paramKey);
+		if (prev === value) return;
 		params.set(paramKey, value);
 		setParams(params);
 	};
+
 	return { getValue, updateValue };
 };
