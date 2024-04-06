@@ -1,14 +1,14 @@
 import { Pagination, Spacer } from "@/components";
 import { Header } from "@/components/common/header";
-import { URL_PARAM_PERSONNEL } from "@/constants";
+import { URL_PARAM_MEMBER } from "@/constants";
 import { useSearchCryptoArray } from "@/hooks";
-import { PersonnelInfoType } from "@/types";
-import { PersonnelList } from "@/units";
+import { MemberType } from "@/types";
+import { MemberList } from "@/units";
 import { FilterSection, MainStructure } from "./units";
 
 const App = () => {
-	const { getArray: getPersonnel } =
-		useSearchCryptoArray<PersonnelInfoType>(URL_PARAM_PERSONNEL);
+	const { getArray: getMember } =
+		useSearchCryptoArray<MemberType>(URL_PARAM_MEMBER);
 
 	return (
 		<MainStructure>
@@ -22,14 +22,12 @@ const App = () => {
 				width="100%"
 				height="2rem"
 			/>
-			<PersonnelList />
+			<MemberList />
 			<Spacer
 				width="100%"
 				height="3rem"
 			/>
-			<Pagination
-				totalPage={Math.floor((getPersonnel().length - 1) / 20) + 1}
-			/>
+			<Pagination totalPage={Math.floor((getMember().length - 1) / 20) + 1} />
 		</MainStructure>
 	);
 };

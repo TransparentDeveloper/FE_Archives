@@ -1,2 +1,2 @@
 export * from "./filter.type";
-export * from "./personnelInfo.type";
+export * from "./member.type";

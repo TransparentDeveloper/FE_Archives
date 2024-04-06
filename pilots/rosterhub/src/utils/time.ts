@@ -1,5 +1,4 @@
 export const getTimeStamp = () => new Date().getTime();
-
 export const getFormattedTodayDate = () => {
 	const today = new Date();
 	const year = today.getFullYear().toString();

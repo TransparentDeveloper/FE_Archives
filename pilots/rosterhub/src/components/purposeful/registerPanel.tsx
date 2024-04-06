@@ -1,15 +1,18 @@
-import { URL_PARAM_PERSONNEL } from "@/constants";
+import { URL_PARAM_MEMBER } from "@/constants";
 import { useSearchCryptoArray } from "@/hooks/useSearchCryptoArray";
 import { $AlignCenter, $SizeFull, BORDER_RADIUS, COLOR } from "@/styles";
-import { PersonnelInfoType } from "@/types";
-import { getFormattedTodayDate, getTimeStamp } from "@/utils";
+import { MemberType } from "@/types";
+import { generateIdByTime, getFormattedTodayDate } from "@/utils";
 import type { CSSProperties, ChangeEvent } from "react";
 import { Button, CenterBox, SymmetricalPaddedBox } from "..";
 import { Divider } from "../common/divider";
 
 export const RegisterPanel = () => {
-	const { addElementOne: addPersonnel } =
-		useSearchCryptoArray<PersonnelInfoType>(URL_PARAM_PERSONNEL);
+	const { getArray: getMemberArray, updateArray: updateMember } =
+		useSearchCryptoArray<MemberType>(URL_PARAM_MEMBER);
+
+	const memberArray = getMemberArray();
+
 	const onSubmit = (e: ChangeEvent<HTMLFormElement>) => {
 		e.preventDefault();
 		const name = (e.target.elements[0] as HTMLInputElement).value;
@@ -28,13 +31,16 @@ export const RegisterPanel = () => {
 			alert("생년월일을 작성해주세요.");
 			return;
 		}
-		addPersonnel({
-			id: getTimeStamp() % 9397, // 소수
+
+		const newMemberArray: Array<MemberType> = [...memberArray];
+		newMemberArray.push({
+			id: generateIdByTime(),
 			name,
 			birthDay,
 			phoneNumber,
 			createdAt: getFormattedTodayDate()
 		});
+		updateMember(newMemberArray);
 	};
 	return (
 		<div style={$GridRow}>

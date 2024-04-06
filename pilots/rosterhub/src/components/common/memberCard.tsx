@@ -8,7 +8,7 @@ import {
 } from "@/styles";
 import type { CSSProperties } from "react";
 
-type PersonnelCardProps = {
+type MemberCardProps = {
 	id: number;
 	name: string;
 	phoneNumberText: string;
@@ -16,13 +16,13 @@ type PersonnelCardProps = {
 	themeColor: string;
 };
 
-export const PersonnelCard = ({
+export const MemberCard = ({
 	id,
 	name,
 	phoneNumberText,
 	birthDayText,
 	themeColor
-}: PersonnelCardProps) => {
+}: MemberCardProps) => {
 	return (
 		<div style={$Container}>
 			<div style={{ ...$IdentificationContainer, backgroundColor: themeColor }}>
@@ -31,7 +31,7 @@ export const PersonnelCard = ({
 					<h4 style={$IdCompleteText}>#{id}</h4>
 				</CenterBox>
 			</div>
-			<div style={$PersonnelWrapper}>
+			<div style={$MemberWrapper}>
 				<KeyValueTexts
 					keyText={"이름"}
 					valueText={name}
@@ -83,7 +83,7 @@ const $IdCompleteText: CSSProperties = {
 	color: COLOR.grayScale[28]
 };
 
-const $PersonnelWrapper: CSSProperties = {
+const $MemberWrapper: CSSProperties = {
 	...$SizeFull,
 	...$AlignCenter,
 	justifyContent: "space-around",

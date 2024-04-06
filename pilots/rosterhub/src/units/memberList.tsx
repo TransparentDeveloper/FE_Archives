@@ -1,19 +1,21 @@
-import { ColumnBox, PersonnelCard } from "@/components";
+import { ColumnBox, MemberCard } from "@/components";
 import {
 	ULR_PARAM_SORT_BY,
 	ULR_PARAM_SORT_METHOD,
 	URL_PARAM_LOAD_PER_PAGE,
-	URL_PARAM_PAGE,
-	URL_PARAM_PERSONNEL
+	URL_PARAM_MEMBER,
+	URL_PARAM_PAGE
 } from "@/constants";
 import { useSearchCryptoArray, useSearchSingleValue } from "@/hooks";
 import { COLOR } from "@/styles";
-import type { PersonnelInfoType } from "@/types";
+import type { MemberType } from "@/types";
 import { useSearchParams } from "react-router-dom";
 
-export const PersonnelList = () => {
-	const { getArray: getPersonnel } =
-		useSearchCryptoArray<PersonnelInfoType>(URL_PARAM_PERSONNEL);
+export const MemberList = () => {
+	const { getArray: getMember } =
+		useSearchCryptoArray<MemberType>(URL_PARAM_MEMBER);
+
+	console.log(getMember());
 
 	const [parms, setParms] = useSearchParams();
 
@@ -31,8 +33,6 @@ export const PersonnelList = () => {
 	const sortBy = getSortBy("name");
 	const sortMethod = getSortMethod("ascend");
 
-	console.log("생성된 데이터 갯수 ", getPersonnel().length, "/20");
-
 	// 이름 순 정렬
 
 	// 생년월일 순 정렬
@@ -41,17 +41,17 @@ export const PersonnelList = () => {
 
 	// 페이지 한번 보여질 만큼 자르기
 
-	const printedPersonnelArray = getPersonnel();
+	const printedMemberArray = getMember();
 
 	return (
 		<ColumnBox gap="3rem">
-			{getPersonnel().map((user) => (
-				<PersonnelCard
-					key={user.id}
-					id={user.id}
-					name={user.name}
-					phoneNumberText={user.phoneNumber}
-					birthDayText={user.birthDay}
+			{getMember().map((member) => (
+				<MemberCard
+					key={member.id}
+					id={member.id}
+					name={member.name}
+					phoneNumberText={member.phoneNumber}
+					birthDayText={member.birthDay}
 					themeColor={COLOR.brand.marieRouge}
 				/>
 			))}

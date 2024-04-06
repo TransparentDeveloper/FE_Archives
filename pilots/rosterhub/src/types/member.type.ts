@@ -1,4 +1,4 @@
-export type PersonnelInfoType = {
+export type MemberType = {
 	id: number;
 	name: string;
 	birthDay: string;

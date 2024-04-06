@@ -1,4 +1,4 @@
-import { arrayDecoder, arrayEncoder } from "@/utils";
+import { compressArrayLZW, decompressArrayLZW } from "@/utils";
 import { useSearchParams } from "react-router-dom";
 
 export const useSearchCryptoArray = <T>(urlParamKey: string) => {
@@ -7,18 +7,13 @@ export const useSearchCryptoArray = <T>(urlParamKey: string) => {
 	const getArray = (): T[] => {
 		const encodedArray = params.get(urlParamKey);
 		if (!encodedArray) return [];
-		return arrayDecoder<T>(encodedArray);
+		return decompressArrayLZW<T>(encodedArray);
 	};
-	/** 추가 */
-	const addElementOne = (newElement: T) => {
-		const encodedArray = params.get(urlParamKey);
-		if (!encodedArray) {
-			params.set(urlParamKey, arrayEncoder<T>([newElement]));
-		} else {
-			const originArray = arrayDecoder<T>(encodedArray);
-			params.set(urlParamKey, arrayEncoder<T>([...originArray, newElement]));
-		}
+	/** 업데이트 */
+	const updateArray = (newArray: T[]) => {
+		const encodedArray = compressArrayLZW(newArray);
+		params.set(urlParamKey, encodedArray);
 		setParams(params);
 	};
-	return { getArray, addElementOne };
+	return { getArray, updateArray };
 };

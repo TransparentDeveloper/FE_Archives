@@ -4,5 +4,5 @@ export * from "./header";
 export * from "./highlightText";
 export * from "./keyValueTexts";
 export * from "./logo";
-export * from "./personnelCard";
+export * from "./memberCard";
 export * from "./spacer";
