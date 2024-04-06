@@ -22,5 +22,10 @@ export const COLOR = {
 		84: "#dddddd",
 		91: "#eeeeee",
 		100: "#ffffff"
+	},
+	system: {
+		success: "#81F781",
+		alert: "#D7DF01",
+		error: "#FA5858"
 	}
 } as const;

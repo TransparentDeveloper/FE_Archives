@@ -9,7 +9,6 @@ import { FilterSection, MainStructure } from "./units";
 const App = () => {
 	const { getArray: getMember } =
 		useSearchCryptoArray<MemberType>(URL_PARAM_MEMBER);
-
 	return (
 		<MainStructure>
 			<Header />

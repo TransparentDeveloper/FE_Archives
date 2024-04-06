@@ -1,46 +1,58 @@
-import { URL_PARAM_MEMBER } from "@/constants";
+import {
+	FORM_BIRTHDAY,
+	FORM_NAME,
+	FORM_PHONE,
+	URL_PARAM_MEMBER
+} from "@/constants";
 import { useSearchCryptoArray } from "@/hooks/useSearchCryptoArray";
+import { BIRTHDAY_RULES, NAME_RULES, PHONE_RULES } from "@/libs/yup/rules";
 import { $AlignCenter, $SizeFull, BORDER_RADIUS, COLOR } from "@/styles";
-import { MemberType } from "@/types";
-import { generateIdByTime, getFormattedTodayDate } from "@/utils";
-import type { CSSProperties, ChangeEvent } from "react";
+import { FormValueType, MemberType } from "@/types";
+import { generateIdByTime, getFormattedDate } from "@/utils";
+import { yupResolver } from "@hookform/resolvers/yup";
+import type { CSSProperties } from "react";
+import { useForm } from "react-hook-form";
+import * as yup from "yup";
 import { Button, CenterBox, Input, SymmetricalPaddedBox } from "..";
 import { Divider } from "../common/divider";
 
+const schema = yup.object().shape({
+	...NAME_RULES,
+	...PHONE_RULES,
+	...BIRTHDAY_RULES
+});
+
 export const RegisterPanel = () => {
+	const {
+		register,
+		handleSubmit,
+		formState: { errors },
+		reset
+	} = useForm({
+		resolver: yupResolver(schema),
+		mode: "onChange"
+	});
 	const { getArray: getMemberArray, updateArray: updateMember } =
 		useSearchCryptoArray<MemberType>(URL_PARAM_MEMBER);
 
 	const memberArray = getMemberArray();
 
-	const onSubmit = (e: ChangeEvent<HTMLFormElement>) => {
-		e.preventDefault();
-		const name = (e.target.elements[0] as HTMLInputElement).value;
-		const phoneNumber = (e.target.elements[1] as HTMLInputElement).value;
-		const birthday = (e.target.elements[2] as HTMLInputElement).value;
-
-		if (!name) {
-			alert("이름을 작성해주세요.");
-			return;
-		}
-		if (!phoneNumber) {
-			alert("전화번호를 입력해주세요.");
-			return;
-		}
-		if (!birthday) {
-			alert("생년월일을 작성해주세요.");
-			return;
-		}
-
+	const onRegisterMember = (
+		data: Pick<
+			FormValueType,
+			typeof FORM_NAME | typeof FORM_PHONE | typeof FORM_BIRTHDAY
+		>
+	) => {
 		const newMemberArray: Array<MemberType> = [...memberArray];
 		newMemberArray.push({
 			id: generateIdByTime(),
-			name,
-			birthday,
-			phoneNumber,
-			createdAt: getFormattedTodayDate()
+			name: data.name!,
+			phoneNumber: data.phone!,
+			birthday: getFormattedDate(data.birthday!),
+			createdAt: getFormattedDate(new Date())
 		});
 		updateMember(newMemberArray);
+		reset();
 	};
 
 	return (
@@ -49,20 +61,28 @@ export const RegisterPanel = () => {
 				<h3>신규 등록</h3>
 			</CenterBox>
 			<Divider length="100%" />
-			<form onSubmit={onSubmit}>
+			<form onSubmit={handleSubmit(onRegisterMember)}>
 				<SymmetricalPaddedBox horizontal="1rem">
 					<CenterBox direction="vertical">
 						<div style={$InputContainer}>
-							<Input placeholder="이름" />
+							<Input
+								placeholder="이름"
+								{...register(FORM_NAME)}
+								error={errors[FORM_NAME]?.message}
+							/>
 							<Input
 								placeholder="전화번호"
 								type="tel"
+								{...register(FORM_PHONE)}
+								error={errors[FORM_PHONE]?.message}
 							/>
 							<Input
 								placeholder="생년월일"
 								type="date"
+								{...register(FORM_BIRTHDAY)}
+								error={errors[FORM_BIRTHDAY]?.message}
 							/>
-							<Button type="submit"> 등록하기</Button>
+							<Button> 등록하기</Button>
 						</div>
 					</CenterBox>
 				</SymmetricalPaddedBox>
