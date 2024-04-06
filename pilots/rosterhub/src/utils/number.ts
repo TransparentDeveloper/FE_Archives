@@ -1,3 +1,4 @@
+/** 호출 시간을 기준으로 id 생성 */
 export const generateIdByTime = () => {
 	const current = new Date().getTime();
 	const divide = current / 9070503010737;

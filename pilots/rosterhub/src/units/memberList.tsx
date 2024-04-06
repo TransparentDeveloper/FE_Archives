@@ -7,8 +7,8 @@ import {
 	URL_PARAM_PAGE
 } from "@/constants";
 import { useSearchCryptoArray, useSearchSingleValue } from "@/hooks";
-import { COLOR } from "@/styles";
 import type { MemberType } from "@/types";
+import { pickBrandBySeed } from "@/utils";
 import { useSearchParams } from "react-router-dom";
 
 export const MemberList = () => {
@@ -52,7 +52,7 @@ export const MemberList = () => {
 					name={member.name}
 					phoneNumberText={member.phoneNumber}
 					birthDayText={member.birthDay}
-					themeColor={COLOR.brand.marieRouge}
+					themeColor={pickBrandBySeed(member.id)}
 				/>
 			))}
 		</ColumnBox>
