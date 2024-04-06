@@ -23,13 +23,13 @@ export const FilterSection = () => {
 				label="정렬 방법"
 				optionArray={OPTION_SORT_METHOD}
 				paramKey={ULR_PARAM_SORT_METHOD}
-				tabIndex={0}
+				tabIndex={1}
 			/>
 			<Dropbox
 				label="한번에 보기"
 				optionArray={OPTION_PER_PAGE}
 				paramKey={URL_PARAM_LOAD_PER_PAGE}
-				tabIndex={0}
+				tabIndex={2}
 			/>
 		</div>
 	);

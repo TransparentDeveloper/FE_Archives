@@ -4,7 +4,7 @@ import { $AlignCenter, $SizeFull, BORDER_RADIUS, COLOR } from "@/styles";
 import { MemberType } from "@/types";
 import { generateIdByTime, getFormattedTodayDate } from "@/utils";
 import type { CSSProperties, ChangeEvent } from "react";
-import { Button, CenterBox, SymmetricalPaddedBox } from "..";
+import { Button, CenterBox, Input, SymmetricalPaddedBox } from "..";
 import { Divider } from "../common/divider";
 
 export const RegisterPanel = () => {
@@ -42,22 +42,23 @@ export const RegisterPanel = () => {
 		});
 		updateMember(newMemberArray);
 	};
+
 	return (
 		<div style={$GridRow}>
 			<CenterBox direction="vertical">
-				<div>토글 영역</div>
+				<h3>신규 등록</h3>
 			</CenterBox>
 			<Divider length="100%" />
 			<form onSubmit={onSubmit}>
 				<SymmetricalPaddedBox horizontal="1rem">
 					<CenterBox direction="vertical">
 						<div style={$InputContainer}>
-							<input placeholder="이름" />
-							<input
+							<Input placeholder="이름" />
+							<Input
 								placeholder="전화번호"
 								type="tel"
 							/>
-							<input
+							<Input
 								placeholder="생년월일"
 								type="date"
 							/>
