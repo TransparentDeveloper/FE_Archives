@@ -22,5 +22,8 @@ export const useSearchCryptoArray = <T>(urlParamKey: string) => {
 		params.set(urlParamKey, encodedArray);
 		setParams(params);
 	};
-	return { getArray, updateArray, appendElement };
+	const getArrayLength = (): number => {
+		return getArray().length;
+	};
+	return { getArray, updateArray, appendElement, getArrayLength };
 };

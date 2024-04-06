@@ -1,4 +1,4 @@
-import { ColumnBox, Logo, RegisterPanel } from "@/components";
+import { ColumnBox, Logo } from "@/components";
 
 export const Header = () => {
 	return (
@@ -7,7 +7,6 @@ export const Header = () => {
 			gap="2rem"
 		>
 			<Logo />
-			<RegisterPanel />
 		</ColumnBox>
 	);
 };

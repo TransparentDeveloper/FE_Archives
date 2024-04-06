@@ -95,7 +95,10 @@ const $GridRow: CSSProperties = {
 	borderRadius: BORDER_RADIUS.big,
 	backgroundColor: COLOR.grayScale[100],
 	boxShadow: `0.4rem 0 1.8rem rgba(00,00,00,0.4)`,
-	padding: "2rem"
+	paddingTop: "2rem",
+	paddingBottom: "2rem",
+	paddingLeft: "5rem",
+	paddingRight: "5rem"
 };
 
 const $InputContainer: CSSProperties = {

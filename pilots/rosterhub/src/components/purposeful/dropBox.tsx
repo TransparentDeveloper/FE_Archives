@@ -1,5 +1,3 @@
-import { OPTION_MAP } from "@/constants";
-import { useSearchSingleValue } from "@/hooks";
 import {
 	$DirectionColumn,
 	$FlexCenter,
@@ -17,20 +15,18 @@ type DropBoxProps = {
 	optionArray: Array<OptionType>;
 	paramKey: string;
 	tabIndex?: number;
+	selectedValue?: string | number;
+	selectCallback: (newSelect: string) => void;
 };
 
 export const Dropbox = ({
 	label,
 	optionArray,
-	paramKey,
+	selectedValue,
+	selectCallback,
 	tabIndex = 0
 }: DropBoxProps) => {
 	const [isFolding, setIsFolding] = useState(true); // true: 접힌 상태, false: 펼쳐진 상태
-	const { getValue, updateValue } = useSearchSingleValue(paramKey);
-
-	let selectedValue: string = getValue(optionArray[0].value);
-	// value->label 변환
-	if (selectedValue in OPTION_MAP) selectedValue = OPTION_MAP[selectedValue];
 
 	const onUnFold = () => setIsFolding(true);
 	const onToggleFolding = () => setIsFolding((prev) => !prev);
@@ -59,7 +55,7 @@ export const Dropbox = ({
 								top: placeOption(idx)
 							}}
 							onMouseDown={() => {
-								updateValue(option.value);
+								selectCallback(option.value);
 								onUnFold();
 							}}
 						>

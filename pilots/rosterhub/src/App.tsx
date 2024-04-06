@@ -1,40 +1,25 @@
-import { Pagination, Spacer } from "@/components";
-import { Header } from "@/components/common/header";
-import { URL_PARAM_LOAD_PER_PAGE, URL_PARAM_MEMBER } from "@/constants";
-import { useSearchCryptoArray, useSearchSingleValue } from "@/hooks";
+import { Logo, Pagination, RegisterPanel, Spacer } from "@/components";
+import { URL_PARAM_MEMBER } from "@/constants";
+import { useSearchCryptoArray } from "@/hooks";
 import { MemberType } from "@/types";
 import { MemberList } from "@/units";
 import { FilterSection, MainStructure } from "./units";
 
 const App = () => {
-	const { getArray: getMember } =
+	const { getArrayLength: getMemberArrayLength } =
 		useSearchCryptoArray<MemberType>(URL_PARAM_MEMBER);
-	const { getValue: getPerPage } = useSearchSingleValue(
-		URL_PARAM_LOAD_PER_PAGE
-	);
-	const perPage = parseInt(getPerPage("10"));
-	console.log(perPage);
 
 	return (
 		<MainStructure>
-			<Header />
-			<Spacer
-				width="100%"
-				height="2rem"
-			/>
+			<Logo />
+			<RegisterPanel />
 			<FilterSection />
-			<Spacer
-				width="100%"
-				height="2rem"
-			/>
 			<MemberList />
 			<Spacer
 				width="100%"
-				height="3rem"
+				height="1rem"
 			/>
-			<Pagination
-				totalPage={Math.floor((getMember().length - 1) / perPage) + 1}
-			/>
+			<Pagination totData={getMemberArrayLength()} />
 		</MainStructure>
 	);
 };

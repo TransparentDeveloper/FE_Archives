@@ -1,4 +1,9 @@
-import { CenterBox, MaxSizeBox, SymmetricalPaddedBox } from "@/components";
+import {
+	CenterBox,
+	ColumnBox,
+	MaxSizeBox,
+	SymmetricalPaddedBox
+} from "@/components";
 import type { ReactNode } from "react";
 
 type MainStructureProps = {
@@ -15,7 +20,9 @@ export const MainStructure = ({ children }: MainStructureProps) => {
 				height="100%"
 				direction="both"
 			>
-				<MaxSizeBox maxWidth="1080px">{children}</MaxSizeBox>
+				<MaxSizeBox maxWidth="1080px">
+					<ColumnBox gap="2rem">{children}</ColumnBox>
+				</MaxSizeBox>
 			</CenterBox>
 		</SymmetricalPaddedBox>
 	);

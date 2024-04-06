@@ -1,2 +1,3 @@
+export * from "./usePagiNation";
 export * from "./useSearchCryptoArray";
-export * from "./useSearchSingleValue";
+export * from "./useSearchStringValue";

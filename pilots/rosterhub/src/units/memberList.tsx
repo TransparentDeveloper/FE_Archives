@@ -4,7 +4,11 @@ import {
 	ULR_PARAM_SORT_METHOD,
 	URL_PARAM_MEMBER
 } from "@/constants";
-import { useSearchCryptoArray, useSearchSingleValue } from "@/hooks";
+import {
+	usePagiNation,
+	useSearchCryptoArray,
+	useSearchStringValue
+} from "@/hooks";
 import type { MemberType, SortByType, SortMethodType } from "@/types";
 import {
 	pickBrandBySeed,
@@ -15,10 +19,12 @@ import {
 export const MemberList = () => {
 	const { getArray: getMemberArray } =
 		useSearchCryptoArray<MemberType>(URL_PARAM_MEMBER);
-	const { getValue: getSortBy } = useSearchSingleValue(ULR_PARAM_SORT_BY);
-	const { getValue: getSortMethod } = useSearchSingleValue(
+	const { getValue: getSortBy } = useSearchStringValue(ULR_PARAM_SORT_BY);
+	const { getValue: getSortMethod } = useSearchStringValue(
 		ULR_PARAM_SORT_METHOD
 	);
+	const { getPrintedDataIdxRange } = usePagiNation();
+	const { startDataIdx, endDataIdx } = getPrintedDataIdxRange();
 
 	const memberArray = getMemberArray();
 	const sortBy = getSortBy("name");
@@ -35,20 +41,22 @@ export const MemberList = () => {
 					sortBy as SortByType,
 					sortMethod as SortMethodType
 				);
-
 	return (
 		<ColumnBox gap="3rem">
-			{sortedMemberArray.map((member, idx) => (
-				<MemberCard
-					key={member.id}
-					order={idx + 1}
-					id={member.id}
-					name={member.name}
-					phone={member.phone}
-					birthday={member.birthday}
-					themeColor={pickBrandBySeed(member.id)}
-				/>
-			))}
+			{sortedMemberArray.map((member, idx) => {
+				if (idx < startDataIdx || endDataIdx < idx) return;
+				return (
+					<MemberCard
+						key={idx}
+						order={idx + 1}
+						id={member.id}
+						name={member.name}
+						phone={member.phone}
+						birthday={member.birthday}
+						themeColor={pickBrandBySeed(member.id)}
+					/>
+				);
+			})}
 		</ColumnBox>
 	);
 };

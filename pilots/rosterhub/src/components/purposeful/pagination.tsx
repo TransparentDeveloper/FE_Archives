@@ -1,91 +1,84 @@
-import { URL_PARAM_LOAD_PER_PAGE, URL_PARAM_PAGE } from "@/constants";
-import { useSearchSingleValue } from "@/hooks";
+import { PAGINATION_UNIT } from "@/constants";
+import { usePagiNation } from "@/hooks";
 import { $FlexCenter, BORDER_RADIUS, COLOR } from "@/styles";
 import { CSSProperties } from "react";
 
 type PaginationProps = {
-	totalPage: number;
+	totData: number;
 };
 
-export const Pagination = ({ totalPage }: PaginationProps) => {
-	const { getValue: getCurPage, updateValue: updateCurPage } =
-		useSearchSingleValue(URL_PARAM_PAGE);
-	const { getValue: getPerPage } = useSearchSingleValue(
-		URL_PARAM_LOAD_PER_PAGE
-	);
-	const perPage = parseInt(getPerPage("10"));
-
-	if (totalPage == 0) return;
-	let curPageString = getCurPage("1");
-	const curPageNumber = parseInt(curPageString);
-	const addendPagination = Math.floor((curPageNumber - 1) / perPage) * perPage;
+export const Pagination = ({ totData }: PaginationProps) => {
+	const { getPageInfoAll, setCurPage } = usePagiNation();
+	const { curPage, totPage } = getPageInfoAll(totData);
 
 	const onClickFirst = () => {
-		updateCurPage("1");
-	};
-	const onClickBefore = () => {
-		if (curPageNumber == 1) return;
-		updateCurPage((curPageNumber - 1).toString());
-	};
-	const onClickAfter = () => {
-		if (curPageNumber == totalPage) return;
-		updateCurPage((curPageNumber + 1).toString());
+		setCurPage(1);
 	};
 	const onClickLast = () => {
-		updateCurPage(totalPage.toString());
+		setCurPage(totPage);
+	};
+	const onClickBefore = () => {
+		if (curPage == 1) return;
+		setCurPage(curPage - 1);
+	};
+	const onClickAfter = () => {
+		if (curPage == totPage) return;
+		setCurPage(curPage + 1);
 	};
 
-	return (
-		<div style={$Container}>
-			<h2
-				style={$CommonText}
-				onClick={onClickFirst}
-			>
-				≪
-			</h2>
+	const pageAddend =
+		Math.floor((curPage - 1) / PAGINATION_UNIT) * PAGINATION_UNIT;
+	if (totData !== 0)
+		return (
+			<div style={$Container}>
+				<h2
+					style={$CommonText}
+					onClick={onClickFirst}
+				>
+					≪
+				</h2>
 
-			<h2
-				style={$CommonText}
-				onClick={onClickBefore}
-			>
-				＜
-			</h2>
+				<h2
+					style={$CommonText}
+					onClick={onClickBefore}
+				>
+					＜
+				</h2>
 
-			{Array.from({
-				length: Math.min(totalPage, perPage)
-			}).map((_, idx) => {
-				const pageNumber = idx + addendPagination + 1;
-				const pageNumberString = pageNumber.toString();
-				if (totalPage < pageNumber) return <></>;
-				return (
-					<h2
-						key={idx}
-						style={{
-							...$CommonText,
-							...(pageNumberString === curPageString && $ActiveText)
-						}}
-						onClick={() => {
-							updateCurPage(pageNumberString);
-						}}
-					>
-						{pageNumberString}
-					</h2>
-				);
-			})}
-			<h2
-				style={$CommonText}
-				onClick={onClickAfter}
-			>
-				＞
-			</h2>
-			<h2
-				style={$CommonText}
-				onClick={onClickLast}
-			>
-				≫
-			</h2>
-		</div>
-	);
+				{Array.from({
+					length: Math.min(totPage, PAGINATION_UNIT)
+				}).map((_, idx) => {
+					const pageNumber = idx + pageAddend + 1;
+					if (totPage < pageNumber) return <></>;
+					return (
+						<h2
+							key={idx}
+							style={{
+								...$CommonText,
+								...(pageNumber === curPage && $ActiveText)
+							}}
+							onClick={() => {
+								setCurPage(pageNumber);
+							}}
+						>
+							{pageNumber}
+						</h2>
+					);
+				})}
+				<h2
+					style={$CommonText}
+					onClick={onClickAfter}
+				>
+					＞
+				</h2>
+				<h2
+					style={$CommonText}
+					onClick={onClickLast}
+				>
+					≫
+				</h2>
+			</div>
+		);
 };
 
 const $Container: CSSProperties = {
