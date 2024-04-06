@@ -38,13 +38,14 @@ export const MemberList = () => {
 
 	return (
 		<ColumnBox gap="3rem">
-			{sortedMemberArray.map((member) => (
+			{sortedMemberArray.map((member, idx) => (
 				<MemberCard
 					key={member.id}
+					order={idx + 1}
 					id={member.id}
 					name={member.name}
-					phoneNumberText={member.phoneNumber}
-					birthDayText={member.birthday}
+					phone={member.phone}
+					birthday={member.birthday}
 					themeColor={pickBrandBySeed(member.id)}
 				/>
 			))}

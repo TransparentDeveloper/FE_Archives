@@ -40,11 +40,11 @@ OPTION_SORT_METHOD.map((object) => {
 
 export const OPTION_PER_PAGE: Array<OptionType> = [
 	{
-		label: "20",
-		value: "20"
+		label: "10",
+		value: "10"
 	},
 	{
-		label: "50",
-		value: "50"
+		label: "15",
+		value: "15"
 	}
 ] as const;

@@ -6,27 +6,30 @@ import {
 	COLOR,
 	FONT_SIZE
 } from "@/styles";
+import { parsePhoneNumber } from "@/utils";
 import type { CSSProperties } from "react";
 
 type MemberCardProps = {
+	order: number;
 	id: number;
 	name: string;
-	phoneNumberText: string;
-	birthDayText: string;
+	phone: string;
+	birthday: string;
 	themeColor: string;
 };
 
 export const MemberCard = ({
+	order,
 	id,
 	name,
-	phoneNumberText,
-	birthDayText,
+	phone,
+	birthday,
 	themeColor
 }: MemberCardProps) => {
 	return (
 		<div style={$Container}>
 			<div style={{ ...$IdentificationContainer, backgroundColor: themeColor }}>
-				<h1 style={$IdHazyText}>#{id}</h1>
+				<h1 style={$IdHazyText}>#{order}</h1>
 				<CenterBox>
 					<h4 style={$IdCompleteText}>#{id}</h4>
 				</CenterBox>
@@ -39,12 +42,12 @@ export const MemberCard = ({
 				/>
 				<KeyValueTexts
 					keyText={"전화번호"}
-					valueText={phoneNumberText}
+					valueText={parsePhoneNumber(phone)}
 					width="30%"
 				/>
 				<KeyValueTexts
 					keyText={"생년월일"}
-					valueText={birthDayText}
+					valueText={birthday}
 					width="30%"
 				/>
 			</div>

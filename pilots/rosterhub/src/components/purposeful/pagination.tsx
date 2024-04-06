@@ -1,4 +1,4 @@
-import { PRINTED_PAGES_NUMBER_AT_ONCE, URL_PARAM_PAGE } from "@/constants";
+import { URL_PARAM_LOAD_PER_PAGE, URL_PARAM_PAGE } from "@/constants";
 import { useSearchSingleValue } from "@/hooks";
 import { $FlexCenter, BORDER_RADIUS, COLOR } from "@/styles";
 import { CSSProperties } from "react";
@@ -10,13 +10,15 @@ type PaginationProps = {
 export const Pagination = ({ totalPage }: PaginationProps) => {
 	const { getValue: getCurPage, updateValue: updateCurPage } =
 		useSearchSingleValue(URL_PARAM_PAGE);
+	const { getValue: getPerPage } = useSearchSingleValue(
+		URL_PARAM_LOAD_PER_PAGE
+	);
+	const perPage = parseInt(getPerPage("10"));
 
 	if (totalPage == 0) return;
 	let curPageString = getCurPage("1");
 	const curPageNumber = parseInt(curPageString);
-	const addendPagination =
-		Math.floor((curPageNumber - 1) / PRINTED_PAGES_NUMBER_AT_ONCE) *
-		PRINTED_PAGES_NUMBER_AT_ONCE;
+	const addendPagination = Math.floor((curPageNumber - 1) / perPage) * perPage;
 
 	const onClickFirst = () => {
 		updateCurPage("1");
@@ -50,7 +52,7 @@ export const Pagination = ({ totalPage }: PaginationProps) => {
 			</h2>
 
 			{Array.from({
-				length: Math.min(totalPage, PRINTED_PAGES_NUMBER_AT_ONCE)
+				length: Math.min(totalPage, perPage)
 			}).map((_, idx) => {
 				const pageNumber = idx + addendPagination + 1;
 				const pageNumberString = pageNumber.toString();
@@ -63,7 +65,6 @@ export const Pagination = ({ totalPage }: PaginationProps) => {
 							...(pageNumberString === curPageString && $ActiveText)
 						}}
 						onClick={() => {
-							console.log("이거봐라", pageNumberString);
 							updateCurPage(pageNumberString);
 						}}
 					>

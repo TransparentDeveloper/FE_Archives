@@ -32,10 +32,8 @@ export const RegisterPanel = () => {
 		resolver: yupResolver(schema),
 		mode: "onChange"
 	});
-	const { getArray: getMemberArray, updateArray: updateMember } =
+	const { appendElement: appendElement } =
 		useSearchCryptoArray<MemberType>(URL_PARAM_MEMBER);
-
-	const memberArray = getMemberArray();
 
 	const onRegisterMember = (
 		data: Pick<
@@ -43,15 +41,13 @@ export const RegisterPanel = () => {
 			typeof FORM_NAME | typeof FORM_PHONE | typeof FORM_BIRTHDAY
 		>
 	) => {
-		const newMemberArray: Array<MemberType> = [...memberArray];
-		newMemberArray.push({
+		appendElement({
 			id: generateIdByTime(),
 			name: data.name!,
-			phoneNumber: data.phone!,
+			phone: data.phone!,
 			birthday: getFormattedDate(data.birthday!),
 			createdAt: getFormattedDate(new Date())
 		});
-		updateMember(newMemberArray);
 		reset();
 	};
 

@@ -29,9 +29,8 @@ export const Dropbox = ({
 	const { getValue, updateValue } = useSearchSingleValue(paramKey);
 
 	let selectedValue: string = getValue(optionArray[0].value);
-	if (selectedValue in OPTION_MAP) {
-		selectedValue = OPTION_MAP[selectedValue];
-	}
+	// value->label 변환
+	if (selectedValue in OPTION_MAP) selectedValue = OPTION_MAP[selectedValue];
 
 	const onUnFold = () => setIsFolding(true);
 	const onToggleFolding = () => setIsFolding((prev) => !prev);

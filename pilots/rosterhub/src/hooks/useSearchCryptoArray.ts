@@ -6,14 +6,21 @@ export const useSearchCryptoArray = <T>(urlParamKey: string) => {
 	/** 조회 */
 	const getArray = (): T[] => {
 		const encodedArray = params.get(urlParamKey);
-		if (!encodedArray) return [];
+		if (!!!encodedArray) return [];
 		return decompressArrayLZW<T>(encodedArray);
 	};
 	/** 업데이트 */
 	const updateArray = (newArray: T[]) => {
-		const encodedArray = compressArrayLZW(newArray);
+		const encodedArray = compressArrayLZW<T>(newArray);
 		params.set(urlParamKey, encodedArray);
 		setParams(params);
 	};
-	return { getArray, updateArray };
+	/** 요소 추가 */
+	const appendElement = (element: T) => {
+		const newArray: Array<T> = [...getArray(), element];
+		const encodedArray = compressArrayLZW<T>(newArray);
+		params.set(urlParamKey, encodedArray);
+		setParams(params);
+	};
+	return { getArray, updateArray, appendElement };
 };
