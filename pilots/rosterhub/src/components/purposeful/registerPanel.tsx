@@ -17,7 +17,7 @@ export const RegisterPanel = () => {
 		e.preventDefault();
 		const name = (e.target.elements[0] as HTMLInputElement).value;
 		const phoneNumber = (e.target.elements[1] as HTMLInputElement).value;
-		const birthDay = (e.target.elements[2] as HTMLInputElement).value;
+		const birthday = (e.target.elements[2] as HTMLInputElement).value;
 
 		if (!name) {
 			alert("이름을 작성해주세요.");
@@ -27,7 +27,7 @@ export const RegisterPanel = () => {
 			alert("전화번호를 입력해주세요.");
 			return;
 		}
-		if (!birthDay) {
+		if (!birthday) {
 			alert("생년월일을 작성해주세요.");
 			return;
 		}
@@ -36,7 +36,7 @@ export const RegisterPanel = () => {
 		newMemberArray.push({
 			id: generateIdByTime(),
 			name,
-			birthDay,
+			birthday,
 			phoneNumber,
 			createdAt: getFormattedTodayDate()
 		});

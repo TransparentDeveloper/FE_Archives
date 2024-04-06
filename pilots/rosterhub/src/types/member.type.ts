@@ -1,7 +1,7 @@
 export type MemberType = {
 	id: number;
 	name: string;
-	birthDay: string;
+	birthday: string;
 	phoneNumber: string;
 	createdAt: string;
 };
