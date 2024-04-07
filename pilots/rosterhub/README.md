@@ -3,10 +3,12 @@
 인명 등록/관리 서비스
 
 <div align="center">
-  
-<kbd> 
-<img width="500" style="border-radius:100000%" alt="roster-hub_log" src="https://github.com/TransparentDeveloper/FE_Archives/assets/50646145/80c0cb88-10ad-435e-8573-563170242f73"> 
-</kbd>
+
+
+<a href="https://roster-hub.vercel.app/">
+  <img src="https://github.com/TransparentDeveloper/FE_Archives/assets/50646145/80c0cb88-10ad-435e-8573-563170242f73" alt="RosterHub" width="500" height="auto">
+</a>
+
 
 _👆 Logo 클릭 시, 배포된 주소로 이동됩니다._
 
@@ -95,7 +97,7 @@ https://github.com/TransparentDeveloper/FE_Archives/assets/50646145/91b159a2-6d1
 <br/>
 <br/>
 
-## 추가 라이브러리 
+## ➕ 추가 라이브러리 
 - React Hook Form : 사용자 입력에 대한 유효성 검사
 - yup : 유효성 스키마 작성
 - lz-string : 데이터 압축(encode) / 해제(decode)
