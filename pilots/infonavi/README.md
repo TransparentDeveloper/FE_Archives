@@ -1,4 +1,6 @@
-_(\*해당 저장소 는 이미 구현이 완료된 원본 저장소 를 복제한 것입니다. - [🔗 원본 저장소 바로가기](https://github.com/secondflow02/InfoNavi))_
+- _이미 구현이 완료된 원본 저장소 에서 복제한 것입니다._
+- _[🛫 원본 저장소 바로가기](https://github.com/secondflow02/InfoNavi)_
+
 
 # 🦋 INFONAVI
 
